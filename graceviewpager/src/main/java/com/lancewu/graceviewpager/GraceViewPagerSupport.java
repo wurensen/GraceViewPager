@@ -26,7 +26,7 @@ public final class GraceViewPagerSupport {
      * @param viewPager 需要添加支持的viewPager
      */
     public static void supportLayoutChange(@NonNull ViewPager viewPager) {
-        viewPager.addOnLayoutChangeListener(new ViewPagerLayoutChangeListener(viewPager));
+        viewPager.addOnLayoutChangeListener(new ViewPagerLayoutChangeListener());
     }
 
     /**
@@ -58,17 +58,28 @@ public final class GraceViewPagerSupport {
      */
     private static final class ViewPagerLayoutChangeListener implements View.OnLayoutChangeListener {
 
-        private ViewPager mViewPager;
-        private int mLastChildWidth;
+        private SizeChangeHandler mSizeChangeHandler;
 
-        ViewPagerLayoutChangeListener(ViewPager viewPager) {
-            mViewPager = viewPager;
+        ViewPagerLayoutChangeListener() {
+            mSizeChangeHandler = new SizeChangeHandler();
         }
 
         @Override
         public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft,
                                    int oldTop, int oldRight, int oldBottom) {
-            int childWidth = right - left - v.getPaddingLeft() - v.getPaddingRight();
+            mSizeChangeHandler.onSizeChange((ViewPager) v, right - left);
+        }
+
+    }
+
+    /**
+     * 尺寸变化处理
+     */
+    public static class SizeChangeHandler {
+        private int mLastChildWidth;
+
+        public void onSizeChange(ViewPager viewPager, int width) {
+            int childWidth = width - viewPager.getPaddingLeft() - viewPager.getPaddingRight();
             if (childWidth == 0) {
                 return;
             }
@@ -84,7 +95,7 @@ public final class GraceViewPagerSupport {
              * 同时，经过数据刷新后scrollX=0不代表定位到第一个页面，取决于最左边child的位置，所以该值有可能是负值；
              * 解决方案：根据旧值获取页面偏移，根据页面偏移计算新的scrollX位置
              */
-            recomputeScrollPosition(mViewPager, mViewPager.getScrollX(), childWidth, mLastChildWidth);
+            recomputeScrollPosition(viewPager, viewPager.getScrollX(), childWidth, mLastChildWidth);
             mLastChildWidth = childWidth;
         }
 
@@ -96,13 +107,12 @@ public final class GraceViewPagerSupport {
          * @param childWidth    新的item宽度
          * @param oldChildWidth 旧的item宽度
          */
-        private static void recomputeScrollPosition(ViewPager viewPager, int scrollX,
-                                                    int childWidth, int oldChildWidth) {
+        private void recomputeScrollPosition(ViewPager viewPager, int scrollX,
+                                             int childWidth, int oldChildWidth) {
             float pageOffset = (float) scrollX / oldChildWidth;
             int newOffsetPixels = (int) (pageOffset * childWidth);
             viewPager.scrollTo(newOffsetPixels, viewPager.getScrollY());
         }
-
     }
 
 }
