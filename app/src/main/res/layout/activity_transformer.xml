@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".TransformerActivity">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/reverse_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="数据反序" />
+
+            <Button
+                android:id="@+id/add_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="添加数据" />
+
+            <Button
+                android:id="@+id/delete_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="删除数据" />
+
+            <Button
+                android:id="@+id/change_padding_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="改变padding"
+                app:layout_constraintLeft_toRightOf="@+id/data_set_changed_btn" />
+
+            <Button
+                android:id="@+id/change_margin_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="改变pageMargin" />
+
+            <Button
+                android:id="@+id/locate_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="直接跳转" />
+
+            <Button
+                android:id="@+id/smooth_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="平滑跳转" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <Space
+        android:id="@+id/placeholder"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:visibility="gone" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent"
+        android:clipToPadding="false"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp" />
+
+</LinearLayout>
