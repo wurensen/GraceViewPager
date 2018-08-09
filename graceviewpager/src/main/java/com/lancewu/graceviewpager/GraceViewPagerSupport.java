@@ -46,9 +46,7 @@ public final class GraceViewPagerSupport {
         if (childWidth == 0) {
             viewPager.setPageMargin(pageMargin);
         } else {
-            /* setPageMargin()调用会进行重新计算item的offset和重新layout，该offset已经考虑了pageMargin，所以
-             * 直接取出调用前的scrollX值进行定位即可
-             */
+            // setPageMargin()调用后当前item的offset值和childWidth不变，所以直接取出调用前的scrollX值进行定位即可
             int oldScrollX = viewPager.getScrollX();
             viewPager.setPageMargin(pageMargin);
             viewPager.scrollTo(oldScrollX, viewPager.getScrollY());

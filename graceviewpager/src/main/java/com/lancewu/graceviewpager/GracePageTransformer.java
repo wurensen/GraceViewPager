@@ -50,7 +50,7 @@ public abstract class GracePageTransformer implements ViewPager.PageTransformer 
         if (requirePagePosition) {
             int currentItem = viewPager.getCurrentItem();
             int pageViewIndex = mPagerAdapter.getPageViewPosition(page);
-            LogUtil.d("transformPage() isDataSetChanging: currentItem = ["
+            LogUtil.d("transformPage() requirePagePosition: currentItem = ["
                     + currentItem + "], pageViewIndex = [" + pageViewIndex + "]");
             if (currentItem == pageViewIndex) {
                 position = 0;
