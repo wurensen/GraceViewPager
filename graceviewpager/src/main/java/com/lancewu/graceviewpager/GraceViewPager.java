@@ -1,6 +1,7 @@
 package com.lancewu.graceviewpager;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -27,7 +28,15 @@ import android.view.View;
  */
 public class GraceViewPager extends ViewPager {
 
+    // 处理尺寸变化
     private GraceViewPagerSupport.SizeChangeHandler mSizeChangeHandler;
+    // Page比例
+    private float mPageHeightWidthRatio;
+    // 水平最小间距
+    private int mPageHorizontalMinMargin;
+    // 垂直最小间距
+    private int mPageVerticalMinMargin;
+    private GraceMultiPagePlugin mMultiPagePlugin;
 
     public GraceViewPager(@NonNull Context context) {
         this(context, null);
@@ -35,7 +44,32 @@ public class GraceViewPager extends ViewPager {
 
     public GraceViewPager(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        initFromAttributes(context, attrs);
         mSizeChangeHandler = new GraceViewPagerSupport.SizeChangeHandler();
+        mMultiPagePlugin = new GraceMultiPagePlugin.Builder(this)
+                .pageHeightWidthRatio(mPageHeightWidthRatio)
+                .pageHorizontalMinMargin(mPageHorizontalMinMargin)
+                .pageVerticalMinMargin(mPageVerticalMinMargin)
+                .build();
+    }
+
+    private void initFromAttributes(Context context, AttributeSet attrs) {
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.GraceViewPager);
+        mPageHeightWidthRatio = typedArray.getFloat(R.styleable.GraceViewPager_gvp_pageHeightWidthRatio, 0);
+        if (mPageHeightWidthRatio < 0) {
+            mPageHeightWidthRatio = 0;
+        }
+        mPageHorizontalMinMargin = typedArray.getDimensionPixelSize(R.styleable.GraceViewPager_gvp_pageHorizontalMinMargin, 0);
+        mPageVerticalMinMargin = typedArray.getDimensionPixelSize(R.styleable.GraceViewPager_gvp_pageVerticalMinMargin, 0);
+        typedArray.recycle();
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int width = MeasureSpec.getSize(widthMeasureSpec);
+        int height = MeasureSpec.getSize(heightMeasureSpec);
+        mMultiPagePlugin.determinePageSize(width, height);
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     @Override

@@ -19,6 +19,7 @@
         <activity android:name=".AnalyseActivity" />
         <activity android:name=".DataSetChangedActivity" />
         <activity android:name=".TransformerActivity" />
+        <activity android:name=".GraceViewPagerActivity" />
     </application>
 
 </manifest>
