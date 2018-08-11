@@ -16,6 +16,24 @@
             android:layout_height="wrap_content">
 
             <Button
+                android:id="@+id/ratio_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PageHeightWidthRatio" />
+
+            <Button
+                android:id="@+id/horitontal_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PageHorizontalMinMargin" />
+
+            <Button
+                android:id="@+id/vertical_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PageVerticalMinMargin" />
+
+            <Button
                 android:id="@+id/reverse_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

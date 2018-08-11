@@ -61,6 +61,9 @@ public class GraceViewPagerActivity extends AppCompatActivity implements View.On
         });
 
         mPlaceholderView = findViewById(R.id.placeholder);
+        findViewById(R.id.ratio_btn).setOnClickListener(this);
+        findViewById(R.id.horitontal_btn).setOnClickListener(this);
+        findViewById(R.id.vertical_btn).setOnClickListener(this);
         findViewById(R.id.reverse_btn).setOnClickListener(this);
         findViewById(R.id.add_btn).setOnClickListener(this);
         findViewById(R.id.delete_btn).setOnClickListener(this);
@@ -78,7 +81,36 @@ public class GraceViewPagerActivity extends AppCompatActivity implements View.On
 
     @Override
     public void onClick(View v) {
+        int _50dp = dip2px(50);
+        int _80dp = dip2px(80);
         switch (v.getId()) {
+            case R.id.ratio_btn:
+                float ratio = mViewPager.getPageHeightWidthRatio();
+                if (ratio == 2) {
+                    ratio = 1;
+                } else {
+                    ratio = 2;
+                }
+                mViewPager.setPageHeightWidthRatio(ratio);
+                break;
+            case R.id.horitontal_btn:
+                int horizontalMinMargin = mViewPager.getPageHorizontalMinMargin();
+                if (horizontalMinMargin == _50dp) {
+                    horizontalMinMargin = _80dp;
+                } else {
+                    horizontalMinMargin = _50dp;
+                }
+                mViewPager.setPageHorizontalMinMargin(horizontalMinMargin);
+                break;
+            case R.id.vertical_btn:
+                int verticalMinMargin = mViewPager.getPageVerticalMinMargin();
+                if (verticalMinMargin == _50dp) {
+                    verticalMinMargin = _80dp;
+                } else {
+                    verticalMinMargin = _50dp;
+                }
+                mViewPager.setPageVerticalMinMargin(verticalMinMargin);
+                break;
             case R.id.reverse_btn:
                 Collections.reverse(mData);
                 mAdapter.notifyDataSetChanged();
