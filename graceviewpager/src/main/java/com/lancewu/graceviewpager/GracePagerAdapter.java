@@ -7,7 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.lancewu.graceviewpager.util.LogUtil;
+import com.lancewu.graceviewpager.util.GraceLog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +48,7 @@ public abstract class GracePagerAdapter<Item> extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        LogUtil.d("instantiateItem() called with: position = [" + position + "]");
+        GraceLog.d("instantiateItem() called with: position = [" + position + "]");
         Item item = mItems.get(position);
         View itemView = instantiateItemView(container, item, position);
         bindItemView(itemView, item, position, true);
@@ -60,7 +60,7 @@ public abstract class GracePagerAdapter<Item> extends PagerAdapter {
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        LogUtil.d("destroyItem() called with: position = [" + position + "]");
+        GraceLog.d("destroyItem() called with: position = [" + position + "]");
         ViewItemHolder viewItemHolder = (ViewItemHolder) object;
         container.removeView(viewItemHolder.mItemView);
         mViewItemHolders.remove(viewItemHolder);
@@ -74,7 +74,7 @@ public abstract class GracePagerAdapter<Item> extends PagerAdapter {
         int newPos = mItems.indexOf(item);
         int itemPosition = newPos == -1 ? POSITION_NONE : newPos;
         int oldPos = viewItemHolder.mPosition;
-        LogUtil.d("getItemPosition: oldPos=" + oldPos + ",newPos=" + newPos);
+        GraceLog.d("getItemPosition: oldPos=" + oldPos + ",newPos=" + newPos);
         if (itemPosition >= 0) {
             // 数据索引发生改变
             if (oldPos != itemPosition) {

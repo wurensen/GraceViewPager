@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.lancewu.graceviewpager.util.LogUtil;
+import com.lancewu.graceviewpager.util.GraceLog;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.transformer_btn).setOnClickListener(this);
         findViewById(R.id.grace_vp_btn).setOnClickListener(this);
         // 打开log
-        LogUtil.setEnable(true);
+        GraceLog.setEnable(true);
     }
 
     @Override
