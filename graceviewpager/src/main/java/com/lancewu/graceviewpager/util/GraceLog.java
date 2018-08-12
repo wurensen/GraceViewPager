@@ -3,7 +3,7 @@ package com.lancewu.graceviewpager.util;
 import android.util.Log;
 
 /**
- * Created by wrs on 2018/8/7.
+ * Created by wrs on 2018/8/7.<br>
  * 日志输出工具
  */
 public class GraceLog {

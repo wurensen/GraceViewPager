@@ -5,8 +5,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 
 /**
- * Created by wrs on 2018/8/8.
- * <br/>
+ * Created by wrs on 2018/8/8.<br>
  * 为ViewPager提供额外的支持和Bug修复；
  * <ol>
  * <li>支持ViewPager尺寸变化以及Page尺寸变化后能够正确定位，特别是在一屏显示多item的场景下发生了padding变化：
@@ -20,7 +19,7 @@ public final class GraceViewPagerSupport {
     /**
      * 使ViewPager支持尺寸变化后，能够正确定位滚动位置。
      * 例如：在一屏显示多item的场景下发生了ViewPager的width变化、padding变化后，不进行重新定位滚动位置会导致显示位置错误。
-     * <br/>
+     * <br>
      * <font color=red>注意：ViewPager初始化后调用一次即可（原理是添加View.OnLayoutChangeListener），不需要重复调用</font>
      *
      * @param viewPager ViewPager
@@ -30,7 +29,7 @@ public final class GraceViewPagerSupport {
     }
 
     /**
-     * 使ViewPager快速支持一屏多页。（内部已支持尺寸变化正确定位，无需再调用{@link #supportLayoutChange(ViewPager)}）<br/>
+     * 使ViewPager快速支持一屏多页。（内部已支持尺寸变化正确定位，无需再调用{@link #supportLayoutChange(ViewPager)}）<br>
      * <font color=red>注意：外部不要再调用修改padding属性，否则会导致效果异常</font>
      *
      * @param viewPager       ViewPager
@@ -60,7 +59,7 @@ public final class GraceViewPagerSupport {
 
     /**
      * ViewPager.recomputeScrollPosition()方法源码有Bug，计算的scrollX值有误，导致动态去调用setPageMargin()后，
-     * 滚动位置有问题。<br/>
+     * 滚动位置有问题。<br>
      * 直接调用该方法替代{@link ViewPager#setPageMargin(int)}，可以修正滚动位置错误问题。
      *
      * @param viewPager  ViewPager

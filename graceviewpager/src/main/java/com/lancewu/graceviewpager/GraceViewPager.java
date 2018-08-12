@@ -14,8 +14,8 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * Created by wrs on 2018/8/9.<br/>
- * 自定义ViewPager，在ViewPager原有基础上，提供拓展功能和修复问题。<br/>
+ * Created by wrs on 2018/8/9.<br>
+ * 自定义ViewPager，在ViewPager原有基础上，提供拓展功能和修复问题。<br>
  * 拓展功能：
  * <ol>
  * <li>提供自定义属性，快速实现一屏多页的功能；</li>
@@ -23,7 +23,7 @@ import android.view.View;
  * </ol>
  * 修复：
  * <ol>
- * <li>PagerTransformer在设置paddingLeft和paddingRight时返回的position偏移问题；/li>
+ * <li>PagerTransformer在设置paddingLeft和paddingRight时返回的position偏移问题；</li>
  * <li>PagerTransformer在数据刷新时返回的position错误问题；</li>
  * <li>ViewPager动态修改width、paddingLeft、paddingRight后滚动位置偏差问题；</li>
  * <li>ViewPager动态修改pageMargin后滚动位置偏差问题；</li>
