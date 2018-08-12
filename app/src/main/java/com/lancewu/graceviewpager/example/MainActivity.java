@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.data_set_changed_btn).setOnClickListener(this);
         findViewById(R.id.transformer_btn).setOnClickListener(this);
         findViewById(R.id.grace_vp_btn).setOnClickListener(this);
+        findViewById(R.id.grace_vp_support_btn).setOnClickListener(this);
         // 打开log
         GraceLog.setEnable(true);
     }
@@ -34,6 +35,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.grace_vp_btn:
                 GraceViewPagerActivity.start(this);
+                break;
+            case R.id.grace_vp_support_btn:
+                GraceViewPagerSupportActivity.start(this);
                 break;
         }
     }

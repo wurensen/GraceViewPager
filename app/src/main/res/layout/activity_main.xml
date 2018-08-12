@@ -7,6 +7,12 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ViewPager分析："
+        android:textSize="20dp" />
+
     <Button
         android:id="@+id/analyse_btn"
         android:layout_width="match_parent"
@@ -25,10 +31,23 @@
         android:layout_height="wrap_content"
         android:text="自定义transformer" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="GraceViewPager例子："
+        android:textSize="20dp" />
+
     <Button
         android:id="@+id/grace_vp_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="GraceViewPager" />
+        android:text="直接使用GraceViewPager" />
+
+    <Button
+        android:id="@+id/grace_vp_support_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="给ViewPager添加支持" />
 
 </LinearLayout>

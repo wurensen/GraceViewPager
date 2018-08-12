@@ -11,9 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.lancewu.graceviewpager.GraceMultiPagePlugin;
 import com.lancewu.graceviewpager.GracePageTransformer;
 import com.lancewu.graceviewpager.GracePagerAdapter;
-import com.lancewu.graceviewpager.GraceViewPager;
+import com.lancewu.graceviewpager.GraceViewPagerSupport;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,33 +22,41 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * 直接使用GraceViewPager例子
+ * 直接给ViewPager添加支持例子
  */
-public class GraceViewPagerActivity extends AppCompatActivity implements View.OnClickListener {
+public class GraceViewPagerSupportActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "GraceViewPager";
 
-    private GraceViewPager mViewPager;
+    private ViewPager mViewPager;
+    private GraceMultiPagePlugin mMultiPagePlugin;
     private List<String> mData = new ArrayList<>();
     private Adapter mAdapter;
     private View mPlaceholderView;
 
     public static void start(Activity act) {
-        Intent starter = new Intent(act, GraceViewPagerActivity.class);
+        Intent starter = new Intent(act, GraceViewPagerSupportActivity.class);
         act.startActivity(starter);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_grace_view_pager);
+        setContentView(R.layout.activity_grace_view_pager_support);
 
         buildTestData();
 
         mViewPager = findViewById(R.id.vp);
         mAdapter = new Adapter(mData);
-        mViewPager.setGraceAdapter(mAdapter);
-        mViewPager.setGracePageTransformer(false, new Transformer(mAdapter));
+        mViewPager.setAdapter(mAdapter);
+        mViewPager.setPageTransformer(false, new Transformer(mAdapter));
+        // 添加一屏多页支持
+        mMultiPagePlugin = new GraceMultiPagePlugin.Builder(mViewPager)
+                .pageHeightWidthRatio(2f)
+                .pageHorizontalMinMargin(dip2px(50))
+                .pageVerticalMinMargin(dip2px(50))
+                .build();
+        GraceViewPagerSupport.supportMultiPage(mViewPager, mMultiPagePlugin);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -88,34 +97,34 @@ public class GraceViewPagerActivity extends AppCompatActivity implements View.On
         int _80dp = dip2px(80);
         switch (v.getId()) {
             case R.id.ratio_btn:
-                float ratio = mViewPager.getPageHeightWidthRatio();
+                float ratio = mMultiPagePlugin.getPageHeightWidthRatio();
                 if (ratio == 2) {
                     ratio = 1;
                 } else {
                     ratio = 2;
                 }
-                // 动态修改比例
-                mViewPager.setPageHeightWidthRatio(ratio);
+                // 修改比例
+                mMultiPagePlugin.setPageHeightWidthRatio(ratio);
                 break;
             case R.id.horitontal_btn:
-                int horizontalMinMargin = mViewPager.getPageHorizontalMinMargin();
+                int horizontalMinMargin = mMultiPagePlugin.getPageHorizontalMinMargin();
                 if (horizontalMinMargin == _50dp) {
                     horizontalMinMargin = _80dp;
                 } else {
                     horizontalMinMargin = _50dp;
                 }
-                // 动态修改水平最小间距
-                mViewPager.setPageHorizontalMinMargin(horizontalMinMargin);
+                // 修改水平最小间距
+                mMultiPagePlugin.setPageHorizontalMinMargin(horizontalMinMargin);
                 break;
             case R.id.vertical_btn:
-                int verticalMinMargin = mViewPager.getPageVerticalMinMargin();
+                int verticalMinMargin = mMultiPagePlugin.getPageVerticalMinMargin();
                 if (verticalMinMargin == _50dp) {
                     verticalMinMargin = _80dp;
                 } else {
                     verticalMinMargin = _50dp;
                 }
-                // 动态修改垂直最小间距
-                mViewPager.setPageVerticalMinMargin(verticalMinMargin);
+                // 修改垂直最小间距
+                mMultiPagePlugin.setPageVerticalMinMargin(verticalMinMargin);
                 break;
             case R.id.reverse_btn:
                 Collections.reverse(mData);
@@ -142,9 +151,9 @@ public class GraceViewPagerActivity extends AppCompatActivity implements View.On
                 } else {
                     pageMargin = 0;
                 }
-                // 修改pageMargin
+                // 使用GraceViewPagerSupport.setPageMargin()来设置pageMargin）
 //                mViewPager.setPageMargin(pageMargin);
-                mViewPager.setGracePageMargin(pageMargin);
+                GraceViewPagerSupport.setPageMargin(mViewPager, pageMargin);
                 break;
             case R.id.locate_btn:
             case R.id.smooth_btn:

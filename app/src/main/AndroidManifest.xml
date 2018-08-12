@@ -20,6 +20,7 @@
         <activity android:name=".DataSetChangedActivity" />
         <activity android:name=".TransformerActivity" />
         <activity android:name=".GraceViewPagerActivity" />
+        <activity android:name=".GraceViewPagerSupportActivity" />
     </application>
 
 </manifest>

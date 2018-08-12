@@ -45,6 +45,7 @@ public class TransformerActivity extends AppCompatActivity implements View.OnCli
         mAdapter = new Adapter(mData);
         mViewPager.setAdapter(mAdapter);
         mViewPager.setPageTransformer(false, new Transformer(mAdapter));
+        // 添加布局变化支持修复滚动
         GraceViewPagerSupport.supportLayoutChange(mViewPager);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

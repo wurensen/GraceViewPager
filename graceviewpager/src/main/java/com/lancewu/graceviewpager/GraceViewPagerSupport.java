@@ -18,15 +18,44 @@ import android.view.View;
 public final class GraceViewPagerSupport {
 
     /**
-     * 使ViewPager支持尺寸变化后，能够正确定位。
+     * 使ViewPager支持尺寸变化后，能够正确定位滚动位置。
      * 例如：在一屏显示多item的场景下发生了ViewPager的width变化、padding变化后，不进行重新定位滚动位置会导致显示位置错误。
      * <br/>
      * <font color=red>注意：ViewPager初始化后调用一次即可（原理是添加View.OnLayoutChangeListener），不需要重复调用</font>
      *
-     * @param viewPager 需要添加支持的viewPager
+     * @param viewPager ViewPager
      */
     public static void supportLayoutChange(@NonNull ViewPager viewPager) {
         viewPager.addOnLayoutChangeListener(new ViewPagerLayoutChangeListener());
+    }
+
+    /**
+     * 使ViewPager快速支持一屏多页。（内部已支持尺寸变化正确定位，无需再调用{@link #supportLayoutChange(ViewPager)}）<br/>
+     * <font color=red>注意：外部不要再调用修改padding属性，否则会导致效果异常</font>
+     *
+     * @param viewPager       ViewPager
+     * @param multiPagePlugin 一屏多页插件
+     * @see GraceMultiPagePlugin
+     */
+    public static void supportMultiPage(@NonNull ViewPager viewPager, final GraceMultiPagePlugin multiPagePlugin) {
+        viewPager.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+
+            private SizeChangeHandler mSizeChangeHandler = new SizeChangeHandler();
+
+            @Override
+            public void onLayoutChange(final View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                final int width = right - left;
+                final int height = bottom - top;
+                // 当前正在layout，需要下一帧重新测量布局生效
+                v.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        multiPagePlugin.determinePageSize(width, height);
+                        mSizeChangeHandler.onSizeChange((ViewPager) v, width);
+                    }
+                });
+            }
+        });
     }
 
     /**
