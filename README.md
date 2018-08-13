@@ -260,6 +260,10 @@ private class Transformer extends GracePageTransformer {
 }
 ```
 
+## Change Log
+
+[Change Log](CHANGELOG.md)
+
 ## License
 
 ```txt
