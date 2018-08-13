@@ -166,10 +166,6 @@ public class TransformerActivity extends AppCompatActivity implements View.OnCli
             tv.setText(item);
         }
 
-        @Override
-        public float getPageWidth(int position) {
-            return 1.f;
-        }
     }
 
 }
