@@ -155,7 +155,7 @@ mViewPager.setGracePageMargin(pageMargin);
 
 如果不便于用`GraceViewPager`替换掉项目中已有的`ViewPager`，也提供对应的支持方式。
 
-##### 添加一屏多页支持
+#### 添加一屏多页支持
 
 支持对已有的`ViewPager`进行一屏多页的支持，首先去除布局中的padding属性：
 
@@ -192,21 +192,21 @@ mMultiPagePlugin.setPageHorizontalMinMargin(horizontalMinMargin);
 mMultiPagePlugin.setPageVerticalMinMargin(verticalMinMargin);
 ```
 
-##### 添加布局变化后滚动位置修正
+#### 添加布局变化后滚动位置修正
 
 ```java
 // 添加布局变化支持修复滚动
 GraceViewPagerSupport.supportLayoutChange(mViewPager);
 ```
 
-##### 添加动态修改pageMargin后滚动位置修正
+#### 添加动态修改pageMargin后滚动位置修正
 
 ```java
 // 动态修改pageMargin时使用该方法
 GraceViewPagerSupport.setPageMargin(mViewPager, pageMargin);
 ```
 
-##### 添加按需创建、销毁视图和动态刷新视图的PagerAdapter
+#### 添加按需创建、销毁视图和动态刷新视图的PagerAdapter
 
 ```java
 private class Adapter extends GracePagerAdapter<String> {
@@ -230,7 +230,7 @@ private class Adapter extends GracePagerAdapter<String> {
 }
 ```
 
-##### 使用修正的页面切换动画，专注于动画本身的实现
+#### 使用修正的页面切换动画，专注于动画本身的实现
 
 需要配合`GracePagerAdapter`使用：
 
@@ -263,17 +263,17 @@ private class Transformer extends GracePageTransformer {
 ## License
 
 ```txt
-   Copyright 2018 LanceWu
+Copyright 2018 LanceWu
 
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-     http://www.apache.org/licenses/LICENSE-2.0
+ http://www.apache.org/licenses/LICENSE-2.0
 
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 ```
