@@ -13,40 +13,41 @@ import android.widget.TextView;
 
 import com.lancewu.graceviewpager.GracePageTransformer;
 import com.lancewu.graceviewpager.GracePagerAdapter;
-import com.lancewu.graceviewpager.GraceViewPagerSupport;
+import com.lancewu.graceviewpager.GraceViewPager;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class TransformerActivity extends AppCompatActivity implements View.OnClickListener {
+/**
+ * 直接使用GraceViewPager例子
+ */
+public class GraceViewPagerActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "GraceViewPager";
 
-    private ViewPager mViewPager;
+    private GraceViewPager mViewPager;
     private List<String> mData = new ArrayList<>();
     private Adapter mAdapter;
     private View mPlaceholderView;
 
     public static void start(Activity act) {
-        Intent starter = new Intent(act, TransformerActivity.class);
+        Intent starter = new Intent(act, GraceViewPagerActivity.class);
         act.startActivity(starter);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_transformer);
+        setContentView(R.layout.activity_grace_view_pager);
 
         buildTestData();
 
         mViewPager = findViewById(R.id.vp);
         mAdapter = new Adapter(mData);
-        mViewPager.setAdapter(mAdapter);
-        mViewPager.setPageTransformer(false, new Transformer(mAdapter));
-        // 添加布局变化支持修复滚动
-        GraceViewPagerSupport.supportLayoutChange(mViewPager);
+        mViewPager.setGraceAdapter(mAdapter);
+        mViewPager.setGracePageTransformer(false, new Transformer(mAdapter));
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -63,6 +64,9 @@ public class TransformerActivity extends AppCompatActivity implements View.OnCli
         });
 
         mPlaceholderView = findViewById(R.id.placeholder);
+        findViewById(R.id.ratio_btn).setOnClickListener(this);
+        findViewById(R.id.horitontal_btn).setOnClickListener(this);
+        findViewById(R.id.vertical_btn).setOnClickListener(this);
         findViewById(R.id.reverse_btn).setOnClickListener(this);
         findViewById(R.id.add_btn).setOnClickListener(this);
         findViewById(R.id.delete_btn).setOnClickListener(this);
@@ -80,7 +84,39 @@ public class TransformerActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
+        int _50dp = dip2px(50);
+        int _80dp = dip2px(80);
         switch (v.getId()) {
+            case R.id.ratio_btn:
+                float ratio = mViewPager.getPageHeightWidthRatio();
+                if (ratio == 2) {
+                    ratio = 1;
+                } else {
+                    ratio = 2;
+                }
+                // 动态修改比例
+                mViewPager.setPageHeightWidthRatio(ratio);
+                break;
+            case R.id.horitontal_btn:
+                int horizontalMinMargin = mViewPager.getPageHorizontalMinMargin();
+                if (horizontalMinMargin == _50dp) {
+                    horizontalMinMargin = _80dp;
+                } else {
+                    horizontalMinMargin = _50dp;
+                }
+                // 动态修改水平最小间距
+                mViewPager.setPageHorizontalMinMargin(horizontalMinMargin);
+                break;
+            case R.id.vertical_btn:
+                int verticalMinMargin = mViewPager.getPageVerticalMinMargin();
+                if (verticalMinMargin == _50dp) {
+                    verticalMinMargin = _80dp;
+                } else {
+                    verticalMinMargin = _50dp;
+                }
+                // 动态修改垂直最小间距
+                mViewPager.setPageVerticalMinMargin(verticalMinMargin);
+                break;
             case R.id.reverse_btn:
                 Collections.reverse(mData);
                 mAdapter.notifyDataSetChanged();
@@ -98,8 +134,6 @@ public class TransformerActivity extends AppCompatActivity implements View.OnCli
             case R.id.change_padding_btn:
                 boolean visible = mPlaceholderView.getVisibility() == View.VISIBLE;
                 mPlaceholderView.setVisibility(visible ? View.GONE : View.VISIBLE);
-                int padding = visible ? dip2px(50) : dip2px(75);
-                mViewPager.setPadding(padding, 0, padding, 0);
                 break;
             case R.id.change_margin_btn:
                 int pageMargin = mViewPager.getPageMargin();
@@ -108,8 +142,9 @@ public class TransformerActivity extends AppCompatActivity implements View.OnCli
                 } else {
                     pageMargin = 0;
                 }
+                // 修改pageMargin
 //                mViewPager.setPageMargin(pageMargin);
-                GraceViewPagerSupport.setPageMargin(mViewPager, pageMargin);
+                mViewPager.setGracePageMargin(pageMargin);
                 break;
             case R.id.locate_btn:
             case R.id.smooth_btn:

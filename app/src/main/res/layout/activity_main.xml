@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,35 +7,47 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ViewPager分析："
+        android:textSize="20sp" />
+
     <Button
         android:id="@+id/analyse_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="源码分析"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="源码分析" />
 
     <Button
         android:id="@+id/data_set_changed_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="数据刷新"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="数据刷新" />
 
     <Button
         android:id="@+id/transformer_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="自定义transformer"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="自定义transformer" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="GraceViewPager例子："
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/grace_vp_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="直接使用GraceViewPager" />
+
+    <Button
+        android:id="@+id/grace_vp_support_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="给ViewPager添加支持" />
 
 </LinearLayout>

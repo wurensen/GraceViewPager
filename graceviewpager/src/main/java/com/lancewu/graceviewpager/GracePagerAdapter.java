@@ -7,14 +7,13 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.lancewu.graceviewpager.util.LogUtil;
+import com.lancewu.graceviewpager.util.GraceLog;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by wrs on 2018/8/2.
- * <br/>
+ * Created by wrs on 2018/8/2.<br>
  * 对PagerAdapter进行封装，通过{@link #getItemPosition(Object)}返回正确的值，达到支持ViewPager数据刷新时，
  * 视图按需创建、删除以及刷新的目的；
  *
@@ -48,7 +47,7 @@ public abstract class GracePagerAdapter<Item> extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        LogUtil.d("instantiateItem() called with: position = [" + position + "]");
+        GraceLog.d("instantiateItem() called with: position = [" + position + "]");
         Item item = mItems.get(position);
         View itemView = instantiateItemView(container, item, position);
         bindItemView(itemView, item, position, true);
@@ -60,7 +59,7 @@ public abstract class GracePagerAdapter<Item> extends PagerAdapter {
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        LogUtil.d("destroyItem() called with: position = [" + position + "]");
+        GraceLog.d("destroyItem() called with: position = [" + position + "]");
         ViewItemHolder viewItemHolder = (ViewItemHolder) object;
         container.removeView(viewItemHolder.mItemView);
         mViewItemHolders.remove(viewItemHolder);
@@ -74,7 +73,7 @@ public abstract class GracePagerAdapter<Item> extends PagerAdapter {
         int newPos = mItems.indexOf(item);
         int itemPosition = newPos == -1 ? POSITION_NONE : newPos;
         int oldPos = viewItemHolder.mPosition;
-        LogUtil.d("getItemPosition: oldPos=" + oldPos + ",newPos=" + newPos);
+        GraceLog.d("getItemPosition: oldPos=" + oldPos + ",newPos=" + newPos);
         if (itemPosition >= 0) {
             // 数据索引发生改变
             if (oldPos != itemPosition) {
@@ -145,7 +144,7 @@ public abstract class GracePagerAdapter<Item> extends PagerAdapter {
     }
 
     /**
-     * 数据是否正在刷新中，即是否处于{@link #notifyDataSetChanged()}->{@link ViewPager#dataSetChanged()}执行过程
+     * 数据是否正在刷新中，即是否处于{@link #notifyDataSetChanged()}到{@link ViewPager#dataSetChanged()}执行过程
      *
      * @return 刷新中返回true
      */

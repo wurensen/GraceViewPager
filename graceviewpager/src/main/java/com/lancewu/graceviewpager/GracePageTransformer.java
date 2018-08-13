@@ -4,11 +4,10 @@ import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
-import com.lancewu.graceviewpager.util.LogUtil;
+import com.lancewu.graceviewpager.util.GraceLog;
 
 /**
- * Created by wrs on 2018/8/7.
- * <br/>
+ * Created by wrs on 2018/8/7.<br>
  * ViewPager动画抽象类。主要负责修复ViewPager.PageTransformer使用中出现的问题：
  * <ul>
  * <li>使用'paddingLeft' + 'clipPadding=false'后（实现显示多页），position偏移问题</li>
@@ -50,7 +49,7 @@ public abstract class GracePageTransformer implements ViewPager.PageTransformer 
         if (requirePagePosition) {
             int currentItem = viewPager.getCurrentItem();
             int pageViewIndex = mPagerAdapter.getPageViewPosition(page);
-            LogUtil.d("transformPage() isDataSetChanging: currentItem = ["
+            GraceLog.d("transformPage() requirePagePosition: currentItem = ["
                     + currentItem + "], pageViewIndex = [" + pageViewIndex + "]");
             if (currentItem == pageViewIndex) {
                 position = 0;
@@ -60,7 +59,7 @@ public abstract class GracePageTransformer implements ViewPager.PageTransformer 
         } else {
             position = getPositionConsiderPadding(viewPager, page);
         }
-        LogUtil.d("transformPage() called with: page = [" + page + "], position = [" + position + "]");
+        GraceLog.d("transformPage() called with: page = [" + page + "], position = [" + position + "]");
         transformPageWithCorrectPosition(page, position);
     }
 

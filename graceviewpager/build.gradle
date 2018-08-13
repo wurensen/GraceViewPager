@@ -1,10 +1,10 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 27
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -24,8 +24,30 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation rootProject.ext.support_v4
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+// 发布插件
+apply plugin: 'com.novoda.bintray-release'
+// 配置发布参数
+publish {
+    uploadName = 'GraceViewPager'
+    userOrg = 'wrs'
+    groupId = 'com.lancewu'
+    artifactId = 'graceviewpager'
+    publishVersion = '0.0.1'
+    desc = 'This is a android library which supporting integrate MultiPage function and fixed some scroll mistakes for ViewPager'
+    website = 'https://github.com/wurensen/GraceViewPager'
+}
+
+// 防止中文乱码
+tasks.withType(Javadoc) {
+    options {
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        links "http://docs.oracle.com/javase/8/docs/api"
+    }
 }
