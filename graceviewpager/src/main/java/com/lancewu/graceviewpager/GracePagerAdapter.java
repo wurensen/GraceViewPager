@@ -13,8 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by wrs on 2018/8/2.
- * <br/>
+ * Created by wrs on 2018/8/2.<br>
  * 对PagerAdapter进行封装，通过{@link #getItemPosition(Object)}返回正确的值，达到支持ViewPager数据刷新时，
  * 视图按需创建、删除以及刷新的目的；
  *
@@ -145,7 +144,7 @@ public abstract class GracePagerAdapter<Item> extends PagerAdapter {
     }
 
     /**
-     * 数据是否正在刷新中，即是否处于{@link #notifyDataSetChanged()}->{@link ViewPager#dataSetChanged()}执行过程
+     * 数据是否正在刷新中，即是否处于{@link #notifyDataSetChanged()}到{@link ViewPager#dataSetChanged()}执行过程
      *
      * @return 刷新中返回true
      */

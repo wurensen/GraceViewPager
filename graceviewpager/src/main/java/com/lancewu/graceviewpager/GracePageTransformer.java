@@ -7,8 +7,7 @@ import android.view.View;
 import com.lancewu.graceviewpager.util.GraceLog;
 
 /**
- * Created by wrs on 2018/8/7.
- * <br/>
+ * Created by wrs on 2018/8/7.<br>
  * ViewPager动画抽象类。主要负责修复ViewPager.PageTransformer使用中出现的问题：
  * <ul>
  * <li>使用'paddingLeft' + 'clipPadding=false'后（实现显示多页），position偏移问题</li>

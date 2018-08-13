@@ -84,6 +84,7 @@
         android:layout_height="50dp"
         android:visibility="gone" />
 
+    <!--注意：不要设定padding-->
     <com.lancewu.graceviewpager.GraceViewPager
         android:id="@+id/vp"
         android:layout_width="match_parent"

@@ -4,8 +4,8 @@ import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 
 /**
- * Created by wrs on 2018/8/10.
- * ViewPager一屏显示多页插件。<br/>
+ * Created by wrs on 2018/8/10.<br>
+ * ViewPager一屏显示多页插件。<br>
  * 快速实现一屏多页功能，原理是使用ViewPager的padding+clipPadding=false来使用，所以外部不需要再调用修改padding属性
  * 的方法
  */
@@ -150,7 +150,7 @@ public class GraceMultiPagePlugin {
         }
 
         /**
-         * 设置Page比例，<=0则比例无效
+         * 设置Page比例，小于等于0则比例无效
          *
          * @param pageHeightWidthRatio 比例，height:width
          * @return Builder

@@ -34,7 +34,8 @@ dependencies {
 apply plugin: 'com.novoda.bintray-release'
 // 配置发布参数
 publish {
-    userOrg = 'LanceWu'
+    uploadName = 'GraceViewPager'
+    userOrg = 'wrs'
     groupId = 'com.lancewu'
     artifactId = 'graceviewpager'
     publishVersion = '0.0.1'
@@ -44,8 +45,9 @@ publish {
 
 // 防止中文乱码
 tasks.withType(Javadoc) {
-    options{ encoding "UTF-8"
+    options {
+        encoding "UTF-8"
         charSet 'UTF-8'
-        links "http://docs.oracle.com/javase/7/docs/api"
+        links "http://docs.oracle.com/javase/8/docs/api"
     }
 }

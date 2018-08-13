@@ -3,7 +3,7 @@
     <declare-styleable name="GraceViewPager">
         <!--page高宽比例值：如2，代表page的 高:宽=2:1，负数和0表示不需要按照比例-->
         <attr name="gvp_pageHeightWidthRatio" format="float" />
-        <!--page水平最小边距，指显示page与ViewPager间的最小间距（因为按比例设定，高度可能不足以容纳，此时就要缩小宽度，即增加间距-->
+        <!--page水平最小边距，指显示page与ViewPager间的最小间距（因为按比例设定，高度可能不足以容纳，此时就要缩小宽度，即最后的间距会大于该设定值-->
         <attr name="gvp_pageHorizontalMinMargin" format="dimension" />
         <!--page垂直最小边距-->
         <attr name="gvp_pageVerticalMinMargin" format="dimension" />

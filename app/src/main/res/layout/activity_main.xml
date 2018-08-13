@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ViewPager分析："
-        android:textSize="20dp" />
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/analyse_btn"
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="GraceViewPager例子："
-        android:textSize="20dp" />
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/grace_vp_btn"
