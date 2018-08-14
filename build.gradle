@@ -34,5 +34,5 @@ ext {
     minSdkVersion = 15
 
     appcompat_v7 = "com.android.support:appcompat-v7:$supportVersion"
-    support_v4 = "com.android.support:support-v4:$supportVersion"
+    support_core_ui = "com.android.support:support-core-ui:$supportVersion"
 }
