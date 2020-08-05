@@ -59,6 +59,12 @@
                 app:layout_constraintLeft_toRightOf="@+id/data_set_changed_btn" />
 
             <Button
+                android:id="@+id/change_width_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="模拟VP宽度变化" />
+
+            <Button
                 android:id="@+id/change_margin_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -75,6 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="平滑跳转" />
+
         </LinearLayout>
     </HorizontalScrollView>
 
@@ -90,8 +97,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorAccent"
-        app:gvp_pageHorizontalMinMargin="50dp"
         app:gvp_pageHeightWidthRatio="2"
+        app:gvp_pageHorizontalMinMargin="50dp"
         app:gvp_pageVerticalMinMargin="50dp" />
 
 </LinearLayout>

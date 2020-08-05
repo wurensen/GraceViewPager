@@ -74,6 +74,7 @@ public class GraceViewPagerActivity extends AppCompatActivity implements View.On
         findViewById(R.id.change_margin_btn).setOnClickListener(this);
         findViewById(R.id.locate_btn).setOnClickListener(this);
         findViewById(R.id.smooth_btn).setOnClickListener(this);
+        findViewById(R.id.change_width_btn).setOnClickListener(this);
     }
 
     private void buildTestData() {
@@ -151,6 +152,13 @@ public class GraceViewPagerActivity extends AppCompatActivity implements View.On
                 int nextInt = new Random().nextInt(mData.size());
                 mViewPager.setCurrentItem(nextInt, v.getId() == R.id.smooth_btn);
                 break;
+            case R.id.change_width_btn:
+                ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) mViewPager.getLayoutParams();
+                int margin = params.leftMargin;
+                margin = margin == 0 ? 100 : 0;
+                params.leftMargin = params.rightMargin = margin;
+                mViewPager.requestLayout();
+                break;
         }
     }
 
@@ -159,7 +167,7 @@ public class GraceViewPagerActivity extends AppCompatActivity implements View.On
         return (int) (dpValue * scale + 0.5f);
     }
 
-    private class Transformer extends GracePageTransformer {
+    private static class Transformer extends GracePageTransformer {
 
         private static final float SCALE = 0.9f;
 

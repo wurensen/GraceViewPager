@@ -75,6 +75,11 @@ public class GraceViewPager extends ViewPager {
     }
 
     @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        // 覆盖父类重新计算的代码，否则宽度变化时会导致scrollX位置出错，导致最终计算新的scrollX值错误
+    }
+
+    @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
         int width = r - l;
